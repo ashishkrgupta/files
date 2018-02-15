@@ -162,3 +162,9 @@ public class MongoEnvRepo implements EnvironmentRepository {
 bootstrap.pprop
 
 spring.data.mongodb.uri=mongodb://localhost/config-db
+
+
+spring.application.name=client-name
+spring.cloud.config.enabled=true
+spring.cloud.config.uri=http://localhost:8980
+management.security.enabled=false
