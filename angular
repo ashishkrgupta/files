@@ -1,0 +1,286 @@
+{
+  "name": "rms",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "7.2.1",
+    "@angular/cdk": "7.2.1",
+    "@angular/common": "^6.1.0",
+    "@angular/compiler": "^6.1.0",
+    "@angular/core": "^6.1.0",
+    "@angular/forms": "^6.1.0",
+    "@angular/http": "^6.1.0",
+    "@angular/material": "7.2.1",
+    "@angular/platform-browser": "^6.1.0",
+    "@angular/platform-browser-dynamic": "^6.1.0",
+    "@angular/router": "^6.1.0",
+    "core-js": "^2.5.4",
+    "hammerjs": "^2.0.8",
+    "rxjs": "~6.2.0",
+    "zone.js": "~0.8.26"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.8.0",
+    "@angular/cli": "~6.2.4",
+    "@angular/compiler-cli": "^6.1.0",
+    "@angular/language-service": "^6.1.0",
+    "@types/jasmine": "~2.8.8",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
+    "codelyzer": "~4.3.0",
+    "jasmine-core": "~2.99.1",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~3.0.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-jasmine": "~1.1.2",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "protractor": "~5.4.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
+    "typescript": "~2.9.2"
+  }
+}
+
+
+
+
+
+
+
+
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { MatToolbarModule, MatCardModule, MatMenuModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatTableModule, MatInputModule, MatPaginatorModule, MatSortModule } from  '@angular/material';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+import { InvoiceListComponent } from './invoice-list/invoice-list.component';
+import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
+import { InvoiceCreateComponent } from './invoice-create/invoice-create.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    InvoiceListComponent,
+    InvoiceDetailComponent,
+    InvoiceCreateComponent,
+    DashboardComponent
+  ],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatMenuModule,
+    MatCardModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+
+
+
+
+
+
+
+
+
+
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a mat-button [routerLink]="''">
+      <h1>RMS CRM</h1>
+    </a>
+    <span class="menu-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="invoice">
+      <mat-icon>assignment</mat-icon>
+      <span>Invoice</span>
+    </button>
+    <mat-menu #invoice="matMenu">
+      <button mat-menu-item>
+        <mat-icon>view_list</mat-icon>
+        <span><a mat-button [routerLink]="'/invoices'"> Invoice List </a></span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>note_add</mat-icon>
+        <span><a mat-button [routerLink]="'/new-invoice'"> New Invoice </a></span>
+      </button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="inventory">
+      <mat-icon>chrome_reader_mode</mat-icon>
+      <span>Inventory</span>
+    </button>
+    <mat-menu #inventory="matMenu">
+        <button mat-menu-item>
+          <mat-icon>list_alt</mat-icon>
+          <span><a mat-button [routerLink]="'/invoices'"> Option1 </a></span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>person_add</mat-icon>
+          <span><a mat-button [routerLink]="'/new-invoice'"> Option2 </a></span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>verified_user</mat-icon>
+          <span><a mat-button [routerLink]="'/new-invoice'"> Option3 </a></span>
+        </button>
+      </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="admin">
+      <mat-icon>account_circle</mat-icon>
+      <span>Admin</span>
+    </button>
+    <mat-menu #admin="matMenu">
+      <button mat-menu-item>
+        <mat-icon>list_alt</mat-icon>
+        <span><a mat-button [routerLink]="'/invoices'"> User List </a></span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>person_add</mat-icon>
+        <span><a mat-button [routerLink]="'/new-invoice'"> Create User </a></span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>verified_user</mat-icon>
+        <span><a mat-button [routerLink]="'/new-invoice'"> User Role </a></span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Component, OnInit } from '@angular/core';
+import {InvoiceService} from '../invoice.service'
+import {Invoice} from '../invoice'
+import {Router} from '@angular/router';
+
+@Component({
+  selector: 'app-invoice-list',
+  templateUrl: './invoice-list.component.html',
+  styleUrls: ['./invoice-list.component.css']
+})
+export class InvoiceListComponent implements OnInit {
+  invoices: Invoice[] = [];
+  displayedColumns = ["id", "customerName", "invoiceDate", "contactNo", "total"];
+
+  constructor(private invoiceService: InvoiceService, private router: Router) { }
+
+  ngOnInit() {
+    this.invoices = this.invoiceService.getInvoices();
+    //console.log(this.invoices);
+    // this.invoiceService.getInvoices().subscribe((invoices: Invoice[])=>{
+    //   this.invoices = invoices;
+    //   console.log(invoices);
+    // })
+  }
+
+  invoiceDetail(row: any) {
+    console.log(row);
+    this.router.navigate(['/invoice/' + row.id]);
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+<mat-card>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span><a mat-button [routerLink]="'/new-invoice'"> New Invoice </a> </span>
+      <span><a mat-button [routerLink]="'/edit-invoice'"> Edit Account </a> </span>
+      <span class="example-fill-remaining-space"></span>
+      <span><a mat-button [routerLink]="''"> Back </a></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-table class="mat-elevation-z8" [dataSource]="invoices">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+      <mat-cell *matCellDef="let invoice">{{invoice.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="customerName">
+      <mat-header-cell *matHeaderCellDef>Customer Name</mat-header-cell>
+      <mat-cell *matCellDef="let invoice">{{invoice.customerName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="invoiceDate">
+      <mat-header-cell *matHeaderCellDef>Invoice Date</mat-header-cell>
+      <mat-cell *matCellDef="let invoice">{{invoice.invoiceDate | date:'medium'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="contactNo">
+      <mat-header-cell *matHeaderCellDef>Contact No</mat-header-cell>
+      <mat-cell *matCellDef="let invoice">{{invoice.contactNo}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="total">
+      <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+      <mat-cell *matCellDef="let invoice">{{invoice.total}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="invoiceDetail(row)" *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <router-outlet></router-outlet>
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
